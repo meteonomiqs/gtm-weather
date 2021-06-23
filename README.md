@@ -6,6 +6,7 @@ The *Meteonomiqs Weather Tag* allows you to enrich your Google Analytics data
 with your users weather conditions!
 
 
+
 ## Setup
 
 
@@ -32,8 +33,9 @@ Fill out the following general fields
 Next, the custom dimesions need to be filled.
 You can assign multiple weather parameters to the same custom dimenions. In this case the values will be separated by a pipe symbol `|`
 
-Weather parameter that are left blank will not be available in the session data later.
+Weather parameters that are left blank will not be available in the session data later.
 
+**NOTE: make sure only to use indices of custom dimensions that are not used elsewhere!**
 
 Finally, you have to enable the tag to fire once per page as described here
 
