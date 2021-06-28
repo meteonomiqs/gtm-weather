@@ -1,0 +1,5 @@
+homepage: "https://www.meteonomiqs.com"
+documentation: "https://meteonomiqs.com/de/wetter-analytics"
+versions:
+  - sha: 66bb8087a3691619ec2e25b49cc80bb52edbe3e4
+    changeNotes: Initial release.
