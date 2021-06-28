@@ -9,7 +9,7 @@ with the user's local weather conditions!
 
 ###  Step 1: Register at meteonomiqs.com
 
-To use the Meteonomiqs Weather Tag*, a registration is required at https://meteonomiqs.com/de/wetter-analytics
+To use the Meteonomiqs Weather Tag*, a registration is required at https://www.meteonomiqs.com/de/wetter-analytics/
 
 ### Step 2: import tag from gallery
 
