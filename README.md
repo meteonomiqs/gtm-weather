@@ -1,24 +1,24 @@
 # Google Analytics Weather Tag Template
 
-## Featues 
+## Features 
 
-The *Meteonomiqs Weather Tag* allows you to enrich your Google Analytics data 
-with your users weather conditions!
-
-
+The `meteonomiqs - weather tag` allows you to enrich your Google Analytics user sessions 
+with the user's local weather conditions!
 
 ## Setup
 
+###  Step 1: Register at meteonomiqs.com
 
-##  Step 1: Register at meteonomiqs.com
-
-To use the Meteonomiqs Weather Tag*, a registration is required at https://meteonomiqs.com/weathertag
+To use the Meteonomiqs Weather Tag*, a registration is required at https://meteonomiqs.com/de/wetter-analytics
 
 ### Step 2: import tag from gallery
 
-Select the *Meteonomiqs Weather Tag* from the gallery
 
-![Import Weather Tag template from gallery](doc/images/gallery_import.png "Import Weather Tag template from gallery")
+Open your Google Tag manager account and click on `Templates`
+
+Select the `meteonomiqs - weather tag` from the solution gallery.
+
+
 ### Step 3: Configure Tag
 
 Now the tag can be configured
@@ -46,10 +46,8 @@ Finally, you have to enable the tag to fire once per page as described here
 
 Once the tag is configured and deployed, the custom dimenions of a user session data will contain the configured the weather parameters!
 
-![Google Analytics example analysis](doc/images/ga_example_1.png "Google Analytics example analysis")
+You can now analyze how user behaviour is impacted by different weather conditions.
 
-Detailed view:
-
-![Google Analytics example analysis](doc/images/ga_example_2.png "Google Analytics example analysis")
+![Google Analytics example analysis](doc/images/ga_example.png "Google Analytics example analysis")
 
 Go ahead an build you own weather based analysis!
