@@ -27,7 +27,7 @@ Now the tag can be configured
 
 Fill out the following general fields
 * `API_KEY`: put here the API key you have received during registration
-* `Cookie Name Website`: e.g. `_sessionstate`
+* `Cookie Name Website`: e.g. `_sessmeteonmq`
 * `Cookie Name Google Analytics`: usually `_ga`
 
 Next, the custom dimesions need to be filled.
