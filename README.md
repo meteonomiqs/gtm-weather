@@ -18,6 +18,12 @@ Open your Google Tag manager account and click on `Templates`
 
 Select the `meteonomiqs - weather tag` from the solution gallery.
 
+***Note: as long as we are not available in the solution gallery, you can download the file 
+[template.tpl](https://raw.githubusercontent.com/meteonomiqs/gtm-weather/main/template.tpl)
+from this repository manually and upload it into the Google Tag Manager:***
+
+![Manual upload](doc/images/gallery_import_from_file.png "Manual upload")
+
 
 ### Step 3: Configure Tag
 
