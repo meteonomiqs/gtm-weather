@@ -13,7 +13,6 @@ To use the Meteonomiqs Weather Tag*, a registration is required at https://www.m
 
 ### Step 2: import tag from gallery
 
-
 Open your Google Tag manager account and click on `Templates`
 
 Select the `meteonomiqs - weather tag` from the solution gallery.
@@ -23,12 +22,13 @@ Select the `meteonomiqs - weather tag` from the solution gallery.
 from this repository manually and upload it into the Google Tag Manager:***
 
 ![Manual upload](doc/images/gallery_import_from_file.png "Manual upload")
-
+![Manual upload](doc/images/import.png "Manual upload")
 
 ### Step 3: Configure Tag
 
-Now the tag can be configured
+Create a new custom tag.
 
+![Tag Configuration](doc/images/customtag.png "Tag Configuration")
 ![Tag Configuration](doc/images/tag_config.png "Tag Configuration")
 
 Fill out the following general fields
@@ -43,10 +43,9 @@ Weather parameters that are left blank will not be available in the session data
 
 **NOTE: make sure only to use indices of custom dimensions that are not used elsewhere!**
 
-Finally, you have to enable the tag to fire once per page as described here
+Finally, fire this custom tag you have created as a cleanup tag (tag sequencing) on your pageview tag as shown here. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired.
 
-![Tag Configuration](doc/images/tag_config_advanced.png "Tag Configuration")
-
+![Tag Configuration](doc/images/sequence.png "Tag Configuration")
 
 ## Usage
 
