@@ -23,6 +23,7 @@ from this repository manually and upload it into the Google Tag Manager:***
 
 ![Manual upload](doc/images/gallery_import_from_file.png "Manual upload")
 ![Manual upload](doc/images/import.png "Manual upload")
+![Manual upload](doc/images/savetemplate.png "Manual upload")
 
 ### Step 3: Configure Tag
 
@@ -43,7 +44,7 @@ Weather parameters that are left blank will not be available in the session data
 
 **NOTE: make sure only to use indices of custom dimensions that are not used elsewhere!**
 
-Finally, fire this custom tag you have created as a cleanup tag (tag sequencing) on your pageview tag as shown here. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired.
+Finally, fire this custom tag you have created as a cleanup tag (tag sequencing) on your website's pageview tag as shown here. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired.
 
 ![Tag Configuration](doc/images/sequence.png "Tag Configuration")
 
