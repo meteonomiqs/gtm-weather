@@ -1,12 +1,4 @@
-___TERMS_OF_SERVICE___
-
-By creating or modifying this file you agree to Google Tag Manager's Community
-Template Gallery Developer Terms of Service available at
-https://developers.google.com/tag-manager/gallery-tos (or such other URL as
-Google may provide), as modified from time to time.
-
-
-___INFO___
+﻿___INFO___
 
 {
   "type": "TAG",
@@ -112,16 +104,15 @@ if (cookie!="true")
   const options = {'domain': 'auto','path': '/','max-age': 60*30,'secure': true};
   setCookie(data.CookieName,"true", options);
   
-  if (data.temperature == undefined){data.temperature=0;}
-  if (data.status == undefined){data.status=0;}
-  if (data.precipitation == undefined){data.isnight=0;}
-  if (data.windchill == undefined){data.windchill=0;}
-  if (cookiega == undefined){cookiega=0;}
+  if (data.temperature == undefined){data.temperature="0";}
+  if (data.status == undefined){data.status="0";}
+  if (data.precipitation == undefined){data.precipitation="0";}
+  if (data.windchill == undefined){data.windchill="0";}
+  if (cookiega == undefined){cookiega="0";}
   
-  let url = encodeUri(endpoint)+"?s="+data.status+"&t="+data.temperature+"&p="+data.precipitation+"&w="+data.windchill+"&c="+cookiega;
+  let url = encodeUri(endpoint)+"?s="+encodeUri(data.status)+"&t="+encodeUri(data.temperature)+"&p="+encodeUri(data.precipitation)+"&w="+encodeUri(data.windchill)+"&c="+encodeUri(cookiega.toString());
 
   injectScript(script, function(){callInWindow('sendData', url, data.apikey);}, data.gtmOnFailure);
-
 }
  data.gtmOnSuccess();
 
