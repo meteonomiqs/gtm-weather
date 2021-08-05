@@ -56,4 +56,6 @@ You can now analyze how user behaviour is impacted by different weather conditio
 
 ![Google Analytics example analysis](doc/images/ga_example.png "Google Analytics example analysis")
 
+Warning: the Weather Tag by Meteonomiqs determines location based on IP address. The location data is then used to check weather conditions. IP address is not saved or processed any further. You should ensure that your website privacy policy complies with the weather tag requirement.
+
 Go ahead an build you own weather based analysis!
