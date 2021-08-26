@@ -37,12 +37,15 @@ Fill out the following general fields
 * `Cookie Name Website`: e.g. `_sessmeteonmq`
 * `Cookie Name Google Analytics`: usually `_ga`
 
-Next, the custom dimesions need to be filled.
-You can assign multiple weather parameters to the same custom dimenions. In this case the values will be separated by a pipe symbol `|`
+Next, the custom dimesions fields need to be filled. Create Custom dimensions with the same Weather parameter names (Weather Status, Temperature, Precipitation , Windchill) on your Google analytics property with 'User' scope. Provide the respective custom dimenion's index on these fields.
+
+You can assign multiple weather parameters to the same custom dimensions. In this case the values will be separated by a pipe symbol `|`
 
 Weather parameters that are left blank will not be available in the session data later.
 
 **NOTE: make sure only to use indices of custom dimensions that are not used elsewhere!**
+
+Save the tag.
 
 Finally, fire this custom tag you have created as a cleanup tag (tag sequencing) on your website's pageview tag as shown here. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired.
 
