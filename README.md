@@ -27,13 +27,13 @@ Click on add.
 
 ### Step 3: Configure Tag
 
-Create a new custom tag.
+Create a new custom tag. Select the template `meteonomiqs - weather tag`.
 
 ![Tag Configuration](doc/images/customtag.png "Tag Configuration")
 
 ![Tag Configuration](doc/images/addcustomtag.png "Tag Configuration")
 
-Fill out the following fields
+Name your tag and fill out the following fields.
 
 * `API_KEY`: put here the API key you have received during registration
 * `Cookie Name Website`: e.g. `_sessmeteonmq`
