@@ -9,30 +9,32 @@ with the user's local weather conditions!
 
 ###  Step 1: Register at meteonomiqs.com
 
-To use the Meteonomiqs Weather Tag*, a registration is required at https://www.meteonomiqs.com/de/wetter-analytics/
+To use the Meteonomiqs Weather Tag, a registration is required at https://www.meteonomiqs.com/de/wetter-analytics/.
 
-### Step 2: Import tag from the Google Tag manager's community template gallery
+### Step 2: Import Template from the Google Tag manager's community template gallery
 
-Open your Google Tag manager account and click on `Templates`
+Open your Google Tag manager account and click on `Templates`.
 
 Click on `Search Gallery` and search for `meteonomiqs - weather tag` from the solution gallery.
 
 Click on the template and add to workspace.
 
-![Manual upload](doc/images/choosetemplate.png "Manual upload")
+![Manual upload](doc/images/choosetemplate.png "Import Template")
 
 Click on add.
 
-![Manual upload](doc/images/addtemplate.png "Manual upload")
+![Manual upload](doc/images/addtemplate.png "Import Template")
 
 ### Step 3: Configure Tag
 
 Create a new custom tag.
 
 ![Tag Configuration](doc/images/customtag.png "Tag Configuration")
-![Tag Configuration](doc/images/tag_config.png "Tag Configuration")
 
-Fill out the following general fields
+![Tag Configuration](doc/images/addcustomtag.png "Tag Configuration")
+
+Fill out the following fields
+
 * `API_KEY`: put here the API key you have received during registration
 * `Cookie Name Website`: e.g. `_sessmeteonmq`
 * `Cookie Name Google Analytics`: usually `_ga`
@@ -44,6 +46,10 @@ You can assign multiple weather parameters to the same custom dimensions. In thi
 Weather parameters that are left blank will not be available in the session data later.
 
 **NOTE: make sure only to use indices of custom dimensions that are not used elsewhere!**
+
+Scroll down to the Advanced settings. Set the tag firing option to `Once per page`.
+
+![Tag Configuration](doc/images/customtagsettings.png "Tag Configuration")
 
 Save the tag.
 
