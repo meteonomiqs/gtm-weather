@@ -11,19 +11,19 @@ with the user's local weather conditions!
 
 To use the Meteonomiqs Weather Tag*, a registration is required at https://www.meteonomiqs.com/de/wetter-analytics/
 
-### Step 2: import tag from gallery
+### Step 2: Import tag from the Google Tag manager's community template gallery
 
 Open your Google Tag manager account and click on `Templates`
 
-Select the `meteonomiqs - weather tag` from the solution gallery.
+Click on `Search Gallery` and search for `meteonomiqs - weather tag` from the solution gallery.
 
-***Note: as long as we are not available in the solution gallery, you can download the file 
-[template.tpl](https://raw.githubusercontent.com/meteonomiqs/gtm-weather/main/template.tpl)
-from this repository manually and upload it into the Google Tag Manager:***
+Click on the template and add to workspace.
 
-![Manual upload](doc/images/gallery_import_from_file.png "Manual upload")
-![Manual upload](doc/images/import.png "Manual upload")
-![Manual upload](doc/images/savetemplate.png "Manual upload")
+![Manual upload](doc/images/choosetemplate.png "Manual upload")
+
+Click on add.
+
+![Manual upload](doc/images/addtemplate.png "Manual upload")
 
 ### Step 3: Configure Tag
 
