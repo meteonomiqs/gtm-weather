@@ -25,7 +25,45 @@ Click on add.
 
 ![Manual upload](doc/images/addtemplate.png "Import Template")
 
-### Step 3: Configure Tag
+### Step 3: Enhance Data Privacy Statement or Configure CMP
+
+To make sure you have consent from your users to enhance their session data, please update 
+your privacy statement (Step 3a) or include wetter.com (meteonomiqs is a brand of wetter.com)
+into the list of IAB vendors of your CMP (Step 3b).
+
+**NOTE: The weather tag requires consent for Google Analytics and Google Tag Managager in order to work!**
+
+
+#### Step 3a: Enhance Data Privacy Statement
+
+You need to extend your data privacy statement using a text such as follows:
+
+> Wir nutzen auf unserer Seite den Weathertag von METEONOMIQS. 
+> Hierzu wird anhand der IP Adresse Ihr ungefährer Standort ermittelt. 
+> Anhand dieser Standortdaten erfolgt dann eine Wetterabfrage bei https://wetter.com. 
+> Eine Speicherung oder weitere Verarbeitung Ihrer IP Adresse findet nicht statt.
+> Weitere Informationen zum WeatherTag finden Sie unter: https://www.meteonomiqs.com/de/wetter-analytics/
+
+
+**NOTE: Eine Rechtsberatung dürfen wir aus gesetzlichen Gründen allerdings nicht geben, weshalb wir Ihnen keinen genauen Satz für Ihre Datenschutzbestimmungen liefern können. Bitte nutzen Sie Ihren eigenen Text in Abstimmung mit Ihrem Datenschutzbeauftragten**
+
+**NOTE: For legal reason we are not allowed to do legal consulting, so please use your own text approved by your data privacy officer.**
+
+#### Step 3b: CMP configuration
+
+Add wetter.com Gmbh (IAB vendor id 1001, https://iabeurope.eu/vendor-list-tcf-v2-0/) to the list of your IAB vendors with the following setup
+
+* Name of processing company: **wetter.com GmbH**
+* Address of processing company: **Reichenaustr. 19a, 78467 Konstanz**
+* Data Collected (Data) : **IP Adress to localize (not stored)**
+* Technologie used (Data): **- (nothing stored)**
+* Distribution to third countries (Data): **within the EU**
+* Policy of Procesor : **Data privacy https://www.meteonomiqs.com/data-privacy/**
+* Cookie Policy Url:  **-**
+* Data Protection Officer:  **datenschutz@wetter.com**
+* Storage information (Storage): **at our side nothing is stored ( weatherinformation is stored by Customer Analytics)**
+
+### Step 4: Configure Tag
 
 Create a new custom tag. Select the template `meteonomiqs - weather tag`.
 
