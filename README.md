@@ -29,14 +29,23 @@ Click on add.
 
 To make sure you have consent from your users to enhance their session data, please update 
 your privacy statement (Step 3a) or include wetter.com (meteonomiqs is a brand of wetter.com)
-into the list of IAB vendors of your CMP (Step 3b).
+into your CMP as non-IAB vendor.
+
+What we need consent for
+* We store a cookie (default name `_sessmeteonmq`, can be change in tag configuration) with value `True` for 30 minutes in order to send the request not more than once per 30 minutes to the meteonomiqs backend
+* The request that is sent to the meteonomiqs backend includes the Google session id from the Google Analytics cookie `_ga` (can be configured in the tag)
+* From the request the IP address is used to derive the location (latitude, longitude) for determining the weather at that location. 
+* The Google session id together with the weather data is sent to Google analyics
+* IP address and location are not stored for further processing, but can be logged for troubleshooting. Logs are kept up to 10 days.
 
 **NOTE: The weather tag requires consent for Google Analytics and Google Tag Managager in order to work!**
 
 
-#### Step 3a: Enhance Data Privacy Statement
+#### Step 3a: Enhance Data Privacy Statement / CMP prior to TCF2.0
 
 You need to extend your data privacy statement using a text such as follows:
+
+Todo @Andy: Cookie aufnehmen!
 
 > Wir nutzen auf unserer Seite den Weathertag von METEONOMIQS. 
 > Hierzu wird anhand der IP Adresse Ihr ungefährer Standort ermittelt. 
@@ -49,10 +58,9 @@ You need to extend your data privacy statement using a text such as follows:
 
 **NOTE: For legal reason we are not allowed to do legal consulting, so please use your own text approved by your data privacy officer.**
 
-#### Step 3b: CMP configuration
+#### Step 3b: CMP with TCF2.0 configuration
 
-Add wetter.com Gmbh (IAB vendor id 1001, https://iabeurope.eu/vendor-list-tcf-v2-0/) to the list of your IAB vendors with the following setup
-
+Add wetter.com Gmbh (meteonomiqs is a brand of wetter.com GmbH) as non IAB Vendor
 * Name of processing company: **wetter.com GmbH**
 * Address of processing company: **Reichenaustr. 19a, 78467 Konstanz**
 * Data Collected (Data) : **IP Adress to localize (not stored)**
@@ -62,6 +70,9 @@ Add wetter.com Gmbh (IAB vendor id 1001, https://iabeurope.eu/vendor-list-tcf-v2
 * Cookie Policy Url:  **-**
 * Data Protection Officer:  **datenschutz@wetter.com**
 * Storage information (Storage): **at our side nothing is stored ( weatherinformation is stored by Customer Analytics)**
+
+The following settings are required
+* TODO Andy
 
 ### Step 4: Configure Tag
 
@@ -86,6 +97,8 @@ Weather parameters that are left blank will not be available in the session data
 **NOTE: make sure only to use indices of custom dimensions that are not used elsewhere!**
 
 Scroll down to the Advanced settings. Set the tag firing option to `Once per page`.
+
+TODO: change this for checking consent
 
 ![Tag Configuration](doc/images/customtagsettings.png "Tag Configuration")
 
