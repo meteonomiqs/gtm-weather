@@ -60,7 +60,7 @@ An easy way is to add wetter.com Gmbh (meteonomiqs is a brand of wetter.com GmbH
 * Storage information: **Cookie (Maximum age of cookie storage: 30 minutes) is set through Weathertag but it is shown as a first Party. No Non-cookie storage**
 
 
-If you are using a CMP prior to TCF2.0 or some other consent solution, please include the above information in your pricavy statement as needed.
+If you are using a CMP prior to TCF2.0 or some other consent solution, please include the above information in your privacy statement as needed.
 
 ### Step 4: Configure Tag
 
