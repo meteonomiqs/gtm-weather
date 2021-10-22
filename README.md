@@ -25,7 +25,7 @@ Click on add.
 
 ![Manual upload](doc/images/addtemplate.png "Import Template")
 
-### Step 3: Enhance Data Privacy Statement or Configure CMP
+### Step 3: Data Privacy Statement & CMP configuration
 
 To make sure you have consent from your users to enhance their session data, please update 
 your privacy statement (Step 3a) or include wetter.com (meteonomiqs is a brand of wetter.com)
@@ -41,38 +41,25 @@ What we need consent for
 **NOTE: The weather tag requires consent for Google Analytics and Google Tag Managager in order to work!**
 
 
-#### Step 3a: Enhance Data Privacy Statement / CMP prior to TCF2.0
+An easy way is to add wetter.com Gmbh (meteonomiqs is a brand of wetter.com GmbH) as non IAB Vendor to your CMP (TCF2.0).
 
-You need to extend your data privacy statement using a text such as follows:
-
-> Wir nutzen auf unserer Seite den Weather Tag by METEONOMIQS, ein Google Tag Manager Template. 
-> Hierzu wird anhand der IP-Adresse Ihr ungefährer Standort ermittelt. 
-> Mit den Standortdaten erfolgt dann eine Wetterabfrage bei wetter.com. 
-> Diese Wetterdaten werden, falls vorhanden, zusammen mit Ihrer Google Analytics Session ID 
-> zu Analysezwecken beim Webseitenbetreiber gespeichert. 
-> Ihre IP-Adresse kann in Logfiles zur Missbrauchsverhinderung bis zu 7 Tage gespeichert werden. 
-> Weitere Informationen zum Weather Tag finden Sie auch unter https://www.meteonomiqs.com/de/wetter-analytics/
-
-
-**NOTE: Eine Rechtsberatung dürfen wir aus gesetzlichen Gründen allerdings nicht geben, weshalb wir Ihnen keinen genauen Satz für Ihre Datenschutzbestimmungen liefern können. Bitte nutzen Sie Ihren eigenen Text in Abstimmung mit Ihrem Datenschutzbeauftragten**
-
-**NOTE: For legal reason we are not allowed to do legal consulting, so please use your own text approved by your data privacy officer.**
-
-#### Step 3b: CMP with TCF2.0 configuration
-
-Add wetter.com Gmbh (meteonomiqs is a brand of wetter.com GmbH) as non IAB Vendor
-* Name of processing company: **wetter.com GmbH**
+* Description: **The presumable location is determined based on your IP address. A weather query is then made with the location data. This weather data is transmitted to the website operator for analysis purposes. The IP address is stored in the logs to identify abuse for up to 10 days. No further processing takes place.**
+* Name of processing company: **meteonomiqs.com  / wetter.com GmbH**
 * Address of processing company: **Reichenaustr. 19a, 78467 Konstanz**
-* Data Collected (Data) : **IP Adress to localize (not stored)**
-* Technologie used (Data): **- (nothing stored)**
-* Distribution to third countries (Data): **within the EU**
+* Puposes: **Weather analytics**
+* Data Collected: **Location based on the IP address**
+* Technologies Used: **Cookies**
+* Location of Processing: **European Union**
+* Retention Period
+  * **Cookie: 30 minutes**
+  * **IP address in the log files for 10 days - the location and weather data is transmitted to the customer system, no further storage takes place on our site.**
 * Policy of Procesor : **Data privacy https://www.meteonomiqs.com/data-privacy/**
-* Cookie Policy Url:  **-**
 * Data Protection Officer:  **datenschutz@wetter.com**
-* Storage information (Storage): **at our side nothing is stored ( weatherinformation is stored by Customer Analytics)**
+* Privacy Policy of the Data Processor: https://www.meteonomiqs.com/de/datenschutz/
+* Storage information: **Cookie (Maximum age of cookie storage: 30 minutes) is set through Weathertag but it is shown as a first Party. No Non-cookie storage**
 
-The following settings/permissions are required
-* TODO Andy
+
+If you are using a CMP prior to TCF2.0 or some other consent solution, please include the above information in your pricavy statement as needed.
 
 ### Step 4: Configure Tag
 
