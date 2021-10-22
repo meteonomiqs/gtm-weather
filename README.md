@@ -45,13 +45,13 @@ What we need consent for
 
 You need to extend your data privacy statement using a text such as follows:
 
-Todo @Andy: Cookie aufnehmen!
-
-> Wir nutzen auf unserer Seite den Weathertag von METEONOMIQS. 
-> Hierzu wird anhand der IP Adresse Ihr ungefährer Standort ermittelt. 
-> Anhand dieser Standortdaten erfolgt dann eine Wetterabfrage bei https://wetter.com. 
-> Eine Speicherung oder weitere Verarbeitung Ihrer IP Adresse findet nicht statt.
-> Weitere Informationen zum WeatherTag finden Sie unter: https://www.meteonomiqs.com/de/wetter-analytics/
+> Wir nutzen auf unserer Seite den Weather Tag by METEONOMIQS, ein Google Tag Manager Template. 
+> Hierzu wird anhand der IP-Adresse Ihr ungefährer Standort ermittelt. 
+> Mit den Standortdaten erfolgt dann eine Wetterabfrage bei wetter.com. 
+> Diese Wetterdaten werden, falls vorhanden, zusammen mit Ihrer Google Analytics Session ID 
+> zu Analysezwecken beim Webseitenbetreiber gespeichert. 
+> Ihre IP-Adresse kann in Logfiles zur Missbrauchsverhinderung bis zu 7 Tage gespeichert werden. 
+> Weitere Informationen zum Weather Tag finden Sie auch unter https://www.meteonomiqs.com/de/wetter-analytics/
 
 
 **NOTE: Eine Rechtsberatung dürfen wir aus gesetzlichen Gründen allerdings nicht geben, weshalb wir Ihnen keinen genauen Satz für Ihre Datenschutzbestimmungen liefern können. Bitte nutzen Sie Ihren eigenen Text in Abstimmung mit Ihrem Datenschutzbeauftragten**
@@ -71,7 +71,7 @@ Add wetter.com Gmbh (meteonomiqs is a brand of wetter.com GmbH) as non IAB Vendo
 * Data Protection Officer:  **datenschutz@wetter.com**
 * Storage information (Storage): **at our side nothing is stored ( weatherinformation is stored by Customer Analytics)**
 
-The following settings are required
+The following settings/permissions are required
 * TODO Andy
 
 ### Step 4: Configure Tag
