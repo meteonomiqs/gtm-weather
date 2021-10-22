@@ -52,7 +52,6 @@ An easy way is to add wetter.com Gmbh (meteonomiqs is a brand of wetter.com GmbH
   * **IP address in the log files for 10 days - the location and weather data is transmitted to the customer system, no further storage takes place on our site.**
 * Policy of Procesor : **Data privacy https://www.meteonomiqs.com/data-privacy/**
 * Data Protection Officer:  **datenschutz@wetter.com**
-* Privacy Policy of the Data Processor: https://www.meteonomiqs.com/de/datenschutz/
 * Storage information: **Cookie (Maximum age of cookie storage: 30 minutes) is set through Weathertag but it is shown as a first Party. No Non-cookie storage**
 
 
