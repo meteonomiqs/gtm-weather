@@ -27,10 +27,6 @@ Click on add.
 
 ### Step 3: Data Privacy Statement & CMP configuration
 
-To make sure you have consent from your users to enhance their session data, please update 
-your privacy statement (Step 3a) or include wetter.com (meteonomiqs is a brand of wetter.com)
-into your CMP as non-IAB vendor.
-
 What we need consent for
 * We store a cookie (default name `_sessmeteonmq`, can be change in tag configuration) with value `True` for 30 minutes in order to send the request not more than once per 30 minutes to the meteonomiqs backend
 * The request that is sent to the meteonomiqs backend includes the Google session id from the Google Analytics cookie `_ga` (can be configured in the tag)
