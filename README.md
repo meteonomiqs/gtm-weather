@@ -49,6 +49,7 @@ An easy way is to add wetter.com Gmbh (meteonomiqs is a brand of wetter.com GmbH
 * Puposes: **Weather analytics**
 * Data Collected: **Location based on the IP address**
 * Technologies Used: **Cookies**
+* Cookie URL: **-**
 * Location of Processing: **European Union**
 * Retention Period
   * **Cookie: 30 minutes**
