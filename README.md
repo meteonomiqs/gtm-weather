@@ -59,14 +59,12 @@ Create a new custom tag. Select the template `meteonomiqs - weather tag`.
 
 ![Tag Configuration](doc/images/customtag.png "Tag Configuration")
 
-![Tag Configuration](doc/images/addcustomtag.png "Tag Configuration")
-
-Name your tag (For example, UA-Weather) and fill out the following fields.
+Name your tag (For example, 'UA-Weather') and fill out the following fields.
 
 * API_KEY: Add the API key you have received during registration
 * Cookie Name Website: _sessmetonmq (this is prefilled)
 * Cookie Name Google Analytics: _ga (this is prefilled)
-* Custom Dimensions: Create Custom dimensions with the same Weather parameter names (Weather Status, Temperature, Precipitation , Windchill) on your Google analytics property with 'User' scope. Provide the respective custom dimenion's index on these fields.
+* Custom Dimensions: Create Custom dimensions with the same Weather parameter names (Weather Status, Temperature, Precipitation, Windchill) on your Google analytics property with 'User' scope. Provide the respective custom dimenion's index on these fields.
 
 ![Tag Configuration](doc/images/gaindexes.png "Tag Configuration")
 
@@ -88,11 +86,11 @@ In addition to that, create a 'First Party Cookie Variable' as shown below. Prov
 
 Now, go back to the custom tag (UA-Weather) we created and add a trigger for checking the consents. Click on Triggering. Click on + at the top right corner to add a new trigger. Choose the custom event trigger.
 
-![Tag Configuration](doc/images/triggersettings.png "Tag Configuration")
+![Tag Configuration](doc/images/triggertype.png "Tag Configuration")
 
 Check consent for both Google Analytics & wetter.com using the variables we created above. In addition to that, check if the first party cookie variable has value on it. This condition ensures that the GA cookie is set before the weather tag is fired. By doing this, we reduce the risk of sending empty values to the meteonomiqs backend. Your trigger should look like below.
 
-![Tag Configuration](doc/images/triggertype.png "Tag Configuration")
+![Tag Configuration](doc/images/triggersettings.png "Tag Configuration")
 
 Note: If you don't have CMP in place, the trigger for checking the consent can be ignored. Simply add this custom tag you have created (without any trigger) as a cleanup tag (Tag sequencing) on your website's generic pageview tag as shown here. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired.
 
