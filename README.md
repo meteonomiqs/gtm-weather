@@ -109,3 +109,60 @@ You can now analyze how user behaviour is impacted by different weather conditio
 Warning: The Weather Tag by Meteonomiqs determines location based on IP address. The location data is then used to check weather conditions. IP address is not saved or processed any further. You should ensure that your website privacy policy complies with the weather tag requirement.
 
 Go ahead an build you own weather based analysis!
+
+## FAQ - Frequently Asked Questions
+
+### How can I check that the tag is integrated correctly?
+
+If the tag is configured correctly, the weather information will be found in the configured custom dimensions in Google Analytics.
+
+To troubleshoot a configuration issue, please check the following points
+
+#### How can I verfiy that my API key is valid?
+
+You can send a GET request as follows:
+
+```
+curl -X GET -H 'x-api-key: <YOUR_API_KEY>' "https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather?c=dummy&s=1"
+```
+
+If you get a respose with {"message":"Forbidden"}`, then you key is not valid. Please contact our support at {TODO: support mail}
+
+
+#### How can I check that the correct Goolge UA ID is used?
+
+You have provided the UA ID during registration. You can check it using you API key:
+
+You can send a GET request as follows:
+
+```
+curl -X GET -H 'x-api-key: <YOUR_API_KEY>' "https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather?c=dummy&s=1"
+```
+
+The response will contain the masked Google UA-ID in the field `"google_uid"`, e.g. "google_uid": "UA-59xxxxxxxx"`
+
+#### How can I see that the tag sends the correct requests to meteonomiqs?
+
+You can use the debug/web view of you browser to look for network traffic to `https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather?`.
+You should find a POST request like this one:
+
+```
+https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather?c=GA1.3.371088426.1234567890&s=1
+```
+
+The parameter c must contain a valid GA session ID. It must be followed by at least one paramter with a value of the custom dimensions you have configured.
+
+### Why is the tag sometimes not fired on first page visits?
+
+{TODO: add section}
+
+### Why are there sessions without weather information?
+
+This can be caused by the following 
+
+* You have visitors that do not interact with you page, see question "Why is the tag sometimes not fired on first page visits?"
+* You have exceed you monthly subscription plan, see question "How can I see how much of my monthly plan is already used?"
+
+### How can I see how much of my monthly plan is already used?
+
+This is not yet possible but will be implemented in one of the next releases. If in doubt, please contact {TODO: support mail}
