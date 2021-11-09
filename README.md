@@ -126,7 +126,7 @@ You can send a GET request as follows:
 curl -X GET -H 'x-api-key: <YOUR_API_KEY>' "https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather?c=dummy&s=1"
 ```
 
-If you get a respose with {"message":"Forbidden"}`, then you key is not valid. Please contact our support at mailto:info@meteonomiqs.com 
+If you get a respose with {"message":"Forbidden"}`, then you key is not valid. Please contact our support at info@meteonomiqs.com 
 
 
 #### How can I check that the correct Goolge UA ID is used?
@@ -178,4 +178,4 @@ This can be caused by the following
 
 ### How can I see how much of my monthly plan is already used?
 
-This is not yet possible but will be implemented in one of the next releases. If in doubt, please contact mailto:info@meteonomiqs.com 
+This is not yet possible but will be implemented in one of the next releases. If in doubt, please contact info@meteonomiqs.com 
