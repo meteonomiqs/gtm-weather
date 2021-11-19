@@ -1,9 +1,11 @@
-# Google Analytics Weather Tag Template
+# WeatherTag4Analytics
 
 ## Features 
 
 The `meteonomiqs - weather tag` allows you to enrich your Google Analytics user sessions 
 with the user's local weather conditions!
+
+The version history can be found here: [VERSIONS.md]
 
 ## Setup
 
