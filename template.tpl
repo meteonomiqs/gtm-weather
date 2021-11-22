@@ -1,4 +1,12 @@
-﻿___INFO___
+﻿___TERMS_OF_SERVICE___
+
+By creating or modifying this file you agree to Google Tag Manager's Community
+Template Gallery Developer Terms of Service available at
+https://developers.google.com/tag-manager/gallery-tos (or such other URL as
+Google may provide), as modified from time to time.
+
+
+___INFO___
 
 {
   "type": "TAG",
@@ -28,6 +36,75 @@ ___TEMPLATE_PARAMETERS___
     "simpleValueType": true
   },
   {
+    "type": "GROUP",
+    "name": "group1",
+    "displayName": "Custom Dimensions",
+    "subParams": [
+      {
+        "type": "LABEL",
+        "name": "label2",
+        "displayName": "Please define the custom dimension index for the weather information. If the same custom dimension index will be used to an index, the data will appear sparated by \"|\". Set the custom dimension scope in the Universal Analytics property to \"User\"."
+      },
+      {
+        "type": "TEXT",
+        "name": "status",
+        "displayName": "Detailed Weather Status",
+        "simpleValueType": true
+      },
+      {
+        "type": "TEXT",
+        "name": "statusgrouped",
+        "displayName": "Grouped Weather Status",
+        "simpleValueType": true
+      },
+      {
+        "type": "TEXT",
+        "name": "temperature",
+        "displayName": "Temperature Maximum",
+        "simpleValueType": true
+      },
+      {
+        "type": "TEXT",
+        "name": "temperaturemin",
+        "displayName": "Temperature Minimum",
+        "simpleValueType": true
+      },
+      {
+        "type": "TEXT",
+        "name": "precipitation",
+        "displayName": "Precipitation",
+        "simpleValueType": true
+      },
+      {
+        "type": "TEXT",
+        "name": "windchill",
+        "displayName": "Windchill",
+        "simpleValueType": true
+      },
+      {
+        "type": "TEXT",
+        "name": "sunhourse",
+        "displayName": "Sunhourse",
+        "simpleValueType": true
+      }
+    ]
+  },
+  {
+    "type": "SELECT",
+    "name": "consent",
+    "displayName": "Consent Status",
+    "macrosInSelect": true,
+    "selectItems": [],
+    "simpleValueType": true,
+    "help": "Add Variable for consent status. Needs to be true to see data in Google Analytics."
+  },
+  {
+    "type": "CHECKBOX",
+    "name": "pushtodl",
+    "checkboxText": "Push execution status of text to dataLayer",
+    "simpleValueType": true
+  },
+  {
     "type": "TEXT",
     "name": "CookieName",
     "displayName": "Cookie Name Meteonomiqs",
@@ -42,42 +119,6 @@ ___TEMPLATE_PARAMETERS___
     "simpleValueType": true,
     "help": "Cookie Name used by GA (default _ga)",
     "defaultValue": "_ga"
-  },
-  {
-    "type": "GROUP",
-    "name": "group1",
-    "displayName": "Custom Dimesions",
-    "subParams": [
-      {
-        "type": "LABEL",
-        "name": "label2",
-        "displayName": "Please define the custom dimension index for the weather information. If the same custom dimension index will be used to an index, the data will appear sparated by \"|\". Set the custom dimension scope in the Universal Analytics property to \"User\"."
-      },
-      {
-        "type": "TEXT",
-        "name": "status",
-        "displayName": "Weather Status",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "temperature",
-        "displayName": "Temperature",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "precipitation",
-        "displayName": "Precipitation",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "windchill",
-        "displayName": "Windchill",
-        "simpleValueType": true
-      }
-    ]
   }
 ]
 
@@ -90,31 +131,64 @@ const getCookieValues = require('getCookieValues');
 const setCookie = require('setCookie');
 const injectScript = require('injectScript');
 const callInWindow = require('callInWindow');
+const createQueue = require('createQueue');
+
 
 const logToConsole = require('logToConsole');
 const endpoint="https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather";
+const dataLayerPush = createQueue('dataLayer');
 
 let script="https://resources.meteonomiqs.com/wdx/gtm-weather/javascript/meteonomiqs_gtm.js";
 
+if (data.consent!=true)
+{
+  const obj = {mtqfired:'consent_not_given'};
+  if (data.pushtodl) {dataLayerPush(obj);}
+  data.gtmOnSuccess();
+}
+else
+{
+
 let cookie = getCookieValues(data.CookieName);
 let cookiega = getCookieValues(data.CookieNameGA);
-
+  
+  
 if (cookie!="true")
-{  
+{ 
+  
+  if (cookiega[0]===undefined)
+  {   
+    const obj = {mtqfired:'no'};
+    if (data.pushtodl) {dataLayerPush(obj);}
+    data.gtmOnSuccess();
+  }
+  else
+  {
   const options = {'domain': 'auto','path': '/','max-age': 60*30,'secure': true};
   setCookie(data.CookieName,"true", options);
   
   if (data.temperature == undefined){data.temperature="0";}
+  if (data.temperaturemin == undefined){data.temperaturemin="0";}
+
   if (data.status == undefined){data.status="0";}
+  if (data.statusgrouped == undefined){data.statusgrouped="0";}
+
   if (data.precipitation == undefined){data.precipitation="0";}
   if (data.windchill == undefined){data.windchill="0";}
+  if (data.sunhours == undefined){data.sunhours="0";}
+
   if (cookiega == undefined){cookiega="0";}
   
-  let url = encodeUri(endpoint)+"?s="+encodeUri(data.status)+"&t="+encodeUri(data.temperature)+"&p="+encodeUri(data.precipitation)+"&w="+encodeUri(data.windchill)+"&c="+encodeUri(cookiega.toString());
+  let url = encodeUri(endpoint)+"?sd="+encodeUri(data.status)+"&sg="+encodeUri(data.statusgrouped)+"&tmax="+encodeUri(data.temperature)+"&tmin="+encodeUri(data.temperaturemin)+"&psum="+encodeUri(data.precipitation)+"&wmax="+encodeUri(data.windchill)+"&sunh="+encodeUri(data.sunhours)+"&c="+encodeUri(cookiega.toString());
 
   injectScript(script, function(){callInWindow('sendData', url, data.apikey);}, data.gtmOnFailure);
+  
+  const obj = {mtqfired:'yes'};
+  if (data.pushtodl) {dataLayerPush(obj);}
+  }
 }
- data.gtmOnSuccess();
+}
+data.gtmOnSuccess();
 
 
 ___WEB_PERMISSIONS___
@@ -279,6 +353,45 @@ ___WEB_PERMISSIONS___
                   {
                     "type": 8,
                     "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "dataLayer"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
                   }
                 ]
               }
