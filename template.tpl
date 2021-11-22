@@ -83,8 +83,8 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "TEXT",
-        "name": "sunhourse",
-        "displayName": "Sunhourse",
+        "name": "sunhours",
+        "displayName": "Sunhours",
         "simpleValueType": true
       }
     ]
@@ -115,7 +115,7 @@ ___TEMPLATE_PARAMETERS___
   {
     "type": "TEXT",
     "name": "CookieNameGA",
-    "displayName": "Cookie Name Gogole Analytics",
+    "displayName": "Cookie Name Google Analytics",
     "simpleValueType": true,
     "help": "Cookie Name used by GA (default _ga)",
     "defaultValue": "_ga"
