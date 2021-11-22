@@ -156,11 +156,15 @@ The parameter c must contain a valid GA session ID. It must be followed by at le
 
 ### Why is the tag sometimes not fired on first page visits?
 
-In order to combine the weather information with a Google Analytics session, the tag should be fired after the first Google Analytics pageview tag is fired. In order to check the tag execution status, tick the box "Push status of tag execution to dataLayer" in the tag and create a dataLayer variable "mtqfired". This variable is updated everytime the tag is requesting weather information along the event name "gaweather".
+In order to combine the weather information with a Google Analytics session, the tag should be fired after the first Google Analytics pageview tag is fired. In order to check the tag execution status, tick the box "Push status of tag execution to dataLayer" in the tag and create a dataLayer variable "mtqfired". This variable is updated everytime the tag is requesting weather information.
 
 ![image](https://user-images.githubusercontent.com/65337449/140804954-f0b5ec8c-2ec1-4707-a0d2-2af4e3a7ab03.png)
 
 If the tag was fired successfully, the value is yes. If the value is no, the tag needs to be fired again.
+
+### How can consent management be integrated?
+
+The tag has an integrated consent trigger. The tag will be fired everytime but cookies and requests will be send only, if the field "Consent Status" is set to true (boolean). Please add a Variable here, that reflects the consent status for this tag.
 
 ### What kind of values is expected for weather information boxes in the tag
 
