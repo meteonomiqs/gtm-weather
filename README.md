@@ -59,9 +59,10 @@ If you are using a CMP prior to TCF2.0 or some other consent solution, please in
 
 Go to 'Variables' on your Tag manager account and create data layer variables for both Google Analytics and wetter.com from your CMP. Name them as 'CMP.GoogleAnalytics' and 'CMP.WeatherTag' respectively.
 
+Create another data layer variable and name it as 'dlv - mtqfired' for example as shown below. Fill in the data layer variable name as 'mtqfired'.
+
 ![Tag Configuration](doc/images/mtqfired.png "Tag Configuration")
 
-Create another data layer variable and name it as 'dlv - mtqfired' for example as shown below. Fill in the data layer variable name as 'mtqfired'.
 
 ### Step 5: Configure Tag
 
@@ -71,7 +72,7 @@ Create a new custom tag. Select the template `meteonomiqs - weather tag`.
 
 Name your tag (For example, 'UA-Weather') and fill out the following fields.
 
-* API_KEY: Add the API key you have received during registration
+* API_KEY: Add the API key you have received during registration.
 
 * Custom Dimensions: Create Custom dimensions with the same Weather parameter names (Detailed Weather Status, Grouped Weather Status, Temperature Maximum, Temperature Minimum, Precipitation, Windchill, Sun hours) on your Google analytics property with 'User' scope. Provide the respective Google Analytics custom dimenion's indexes on these fields. You can assign multiple weather parameters to the same custom dimensions. In this case, the values will be separated by a pipe symbol `|`. Weather parameters that are left blank will not be available in the session data later. Make sure you do not reuse the custom dimenion indexes.
 
@@ -108,7 +109,7 @@ In addition to that, check the return value of the variable 'dlv - mtqfired'. Th
 
 
 
-Note: If you don't have CMP in place, the trigger for checking the consent can be ignored. Simply add this custom tag you have created (without any trigger) as a cleanup tag (Tag sequencing) on your website's generic pageview tag as shown here. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired.
+Note: If you don't have CMP in place, the trigger for checking the consent (Step 6) can be ignored. Simply add this custom tag you have created (without any trigger) as a cleanup tag (Tag sequencing) on your website's generic pageview tag as shown here. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired.
 
 ![Tag Configuration](doc/images/sequence.png "Tag Configuration")
 
