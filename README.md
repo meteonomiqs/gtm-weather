@@ -76,9 +76,9 @@ Name your tag (For example, 'UA-Weather') and fill out the following fields.
 
 * Custom Dimensions: Create Custom dimensions with the same Weather parameter names (Detailed Weather Status, Grouped Weather Status, Temperature Maximum, Temperature Minimum, Precipitation, Windchill, Sun hours) on your Google analytics property with 'User' scope. Provide the respective Google Analytics custom dimenion's indexes on these fields. You can assign multiple weather parameters to the same custom dimensions. In this case, the values will be separated by a pipe symbol `|`. Weather parameters that are left blank will not be available in the session data later. Make sure you do not reuse the custom dimenion indexes.
 
-![Tag Configuration](doc/images/Screenshot 2021-11-23 at 11.46.55.png "Tag Configuration")
+![Tag Configuration](doc/images/gav2.png "Tag Configuration")
 
-![Tag Configuration](doc/images/Screenshot 2021-11-23 at 11.46.31.png "Tag Configuration")
+![Tag Configuration](doc/images/tagv2.png "Tag Configuration")
 
 * Consent Status: Choose the data layer variable 'CMP.WeatherTag' which we created earlier. It checks the user consent for wetter.com. The weather information will ONLY be sent if the return value of this variable is true.
 
