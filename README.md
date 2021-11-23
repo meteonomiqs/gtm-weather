@@ -59,6 +59,8 @@ If you are using a CMP prior to TCF2.0 or some other consent solution, please in
 
 Go to 'Variables' on your Tag manager account and create data layer variables for both Google Analytics and wetter.com from your CMP. Name them as 'CMP.GoogleAnalytics' and 'CMP.WeatherTag' respectively.
 
+![Tag Configuration](doc/images/mtqfired.png "Tag Configuration")
+
 Create another data layer variable and name it as 'dlv - mtqfired' for example as shown below. Fill in the data layer variable name as 'mtqfired'.
 
 ### Step 5: Configure Tag
@@ -77,31 +79,43 @@ Name your tag (For example, 'UA-Weather') and fill out the following fields.
 
 ![Tag Configuration](doc/images/templateindexes.png "Tag Configuration")
 
-* Consent Status: Choose the data layer variable 'CMP.WeatherTag' which we created earlier. It checks the user consent for wetter.com. The weather information will only be sent if the return value of this variable is true.
+* Consent Status: Choose the data layer variable 'CMP.WeatherTag' which we created earlier. It checks the user consent for wetter.com. The weather information will ONLY be sent if the return value of this variable is true.
 
-* Push status execution to data layer: Leave the checkbox enabled to get the weather tag execution status in the data layer. The variable 'mtqfired' will be updated every time when the weather tag is requesting for weather information. If the tag is fired successfully, the value is 'yes'. If the value is 'no', the tag needs to be fired again. We use the return value (yes/no) to trigger the weather tag.
+* Push status execution to data layer: Leave this checkbox enabled to get the weather tag execution status in the data layer. The variable 'mtqfired' will be updated every time when the weather tag is requesting for weather information. If the tag is fired successfully, the value is 'yes'. If the value is 'no', the tag needs to be fired again. We use the return value (yes/no) to trigger the weather tag in Step 6.
 
 * Cookie Name Meteonomiqs: _sessmetonmq (this is prefilled)
 
 * Cookie Name Google Analytics: _ga (this is prefilled)
 
-Save the tag. Add this tag as a cleanup tag (Tag sequencing) on your website's generic pageview tag as shown below. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired. This is done to first send the tag execution status to the data layer.
+Save the tag. Add this tag ('UA-Weather') as a cleanup tag (Tag sequencing) on your website's generic pageview tag as shown below. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired. This is required to associate the weather information with the Google Analytics sessions.
+
+![Tag Configuration](doc/images/sequenc.png "Tag Configuration")
+
+In most cases, Tag sequencing is enough to send the weather information. But sometimes when a visitor has left your page without any interation, empty values may be sent instead of weather information. To avoid that, we add a trigger (Step 6) that will repeatedly fire the weather tag based on the previous execution status.
+
 
 ### Step 6: Configure Trigger
 
 Click on Triggering. Click on + at the top right corner to add a new trigger. Choose the custom event trigger.
 
+![Tag Configuration](doc/images/customeventtrigger.png "Tag Configuration")
+
 Under the trigger firing conditions, check the return value for both the variables 'CMP.GoogleAnalytics' and 'CMP.WeatherTag' we created earlier. The value should be 'true'.
 
+![Tag Configuration](doc/images/triggerv2.png "Tag Configuration")
+
 In addition to that, check the return value of the variable 'dlv - mtqfired'. The value should be 'no'. This means the tag will fire repeatedly until the value is 'yes'. Eventhough the tag is fired multiple times, there is no call to the backend until the value is 'yes'. Save the trigger.
+
+
 
 Note: If you don't have CMP in place, the trigger for checking the consent can be ignored. Simply add this custom tag you have created (without any trigger) as a cleanup tag (Tag sequencing) on your website's generic pageview tag as shown here. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired.
 
 ![Tag Configuration](doc/images/sequence.png "Tag Configuration")
 
+
 ## Usage
 
-Once the tag is configured and deployed, the custom dimenions of a user session data will contain the configured weather parameters!
+Once the tag is configured and published, the custom dimenions of a user session data will contain the configured weather parameters!
 
 You can now analyze how user behaviour is impacted by different weather conditions.
 
@@ -119,7 +133,7 @@ Go ahead an build you own weather based analysis!
 
 If the tag is configured correctly, the weather information will be found in the configured custom dimensions in Google Analytics.
 
-To troubleshoot a configuration issue, please check the following points
+To troubleshoot a configuration issue, please check the following points.
 
 #### How can I verfiy that my API key is valid?
 
@@ -132,7 +146,7 @@ curl -X GET -H 'x-api-key: <YOUR_API_KEY>' "https://wdx-gtm.meteonomiqs.com/prod
 If you get a respose with {"message":"Forbidden"}`, then you key is not valid. Please contact our support at info@meteonomiqs.com 
 
 
-#### How can I check that the correct Goolge UA ID is used?
+#### How can I check that the correct Google UA ID is used?
 
 You have provided the UA ID during registration. You can check it using you API key:
 
