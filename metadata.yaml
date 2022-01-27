@@ -1,5 +1,8 @@
 homepage: "https://www.meteonomiqs.com"
 documentation: "https://www.meteonomiqs.com/de/wetter-analytics/"
 versions:
+  - sha: 1aff2d3180c07c6e940d186e8283d5f88afdaa99
+    changeNotes: additional weather information and consent field added.
+	
   - sha: 66bb8087a3691619ec2e25b49cc80bb52edbe3e4
     changeNotes: Initial release.
