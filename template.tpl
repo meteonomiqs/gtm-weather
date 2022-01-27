@@ -1,4 +1,4 @@
-﻿___INFO___
+___INFO___
 
 {
   "type": "TAG",
@@ -6,6 +6,7 @@
   "version": 1,
   "securityGroups": [],
   "displayName": "meteonomiqs - weather tag",
+  "categories": ["ANALYTICS"],
   "brand": {
     "id": "brand_dummy",
     "displayName": "meteonomiqs",
@@ -140,7 +141,6 @@ if (data.consent!=true)
 }
 else
 {
-
 let cookie = getCookieValues(data.CookieName);
 let cookiega = getCookieValues(data.CookieNameGA);
   
@@ -434,5 +434,3 @@ scenarios: []
 ___NOTES___
 
 Created on 28.5.2021, 14:04:26
-
-
