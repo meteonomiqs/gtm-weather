@@ -3,7 +3,7 @@
 ## Features 
 
 The `meteonomiqs - weather tag` allows you to enrich your Google Analytics user sessions 
-with the user's local weather conditions!
+with the user's local weather conditions! The newest Version 3.0 of the WeatherTag4Analytics is 
 
 The version history can be found here: [VERSIONS.md]
 
@@ -27,13 +27,17 @@ Click on add.
 
 ![Manual upload](doc/images/addtemplate.png "Import Template")
 
+Please ensure, you are using the newest version of the template. Beginning at version 3 template, the version is shown directly in the GTM Tag:
+![image](https://user-images.githubusercontent.com/65337449/156021863-b92361eb-4fdf-49a4-96cd-31164272594f.png)
+
+If you don't see the Version in the tag, please update your configuration to the newest tag version
+
 ### Step 3: Data Privacy Statement & CMP configuration
 
 What we need consent for:
 * We store a cookie (`_sessmetonmq`) with value `true` for 30 minutes in order to send the request not more than once per 30 minutes to the meteonomiqs backend
-* The request that is sent to the meteonomiqs backend includes the Google client id from the Google Analytics cookie `_ga`
 * From the request, the IP address is used to derive the location (latitude, longitude) for determining the weather at that location
-* The Google client id together with the weather data is sent to Google analyics
+* The weather will be sent back to the dataLayer
 * IP address and location are not stored for further processing, but can be logged for troubleshooting. Logs are kept up to 10 days
 
 An easy way is to add wetter.com Gmbh (meteonomiqs is a brand of wetter.com GmbH) as non IAB Vendor to your CMP (TCF2.0).
@@ -57,14 +61,32 @@ If you are using a CMP prior to TCF2.0 or some other consent solution, please in
 
 ### Step 4: Create Variables
 
+Beginning in Version 3 of the WeatherTag4Analytics, we are not sending the events directly to Google Analytics. After firing the tag, WeatherTag4Analytics will push the weatherinformation to the dataLayer:
+
+![image](https://user-images.githubusercontent.com/65337449/156024509-b7a0f95d-d59e-4488-a0a3-e6f65f0140d9.png)
+
+After pushing the information, a event will be added to the dataLayer named weatherinformation:
+
+![image](https://user-images.githubusercontent.com/65337449/156024655-aeb63b69-5106-463f-9a38-0af669d7cf39.png)
+
 Go to 'Variables' on your Tag manager account and create data layer variables for both Google Analytics and wetter.com from your CMP. Name them as 'CMP.GoogleAnalytics' and 'CMP.WeatherTag' respectively.
 
-Create another data layer variable and name it as 'dlv - mtqfired' for example as shown below. Fill in the data layer variable name as 'mtqfired'.
+Create data layer variables that will contain the weather information later as shown below:
 
-![Tag Configuration](doc/images/mtqfired.png "Tag Configuration")
+| dataLayer variable name  | 
+| ------------- | 
+| precipitation  | 
+| state_detail  | 
+| state_general  | 
+| sun_hours  | 
+| temperature_max  | 
+| temperature_min  |
+| windchill_max  |
+| windchill_min  |
 
+We recommend to set the name of the variable to the dataLayer variable name with the prefix DLV., e.g. DLV.temperaturemin
 
-### Step 5: Configure Tag
+### Step 5: Configure WeatherTag4Analytics
 
 Create a new custom tag. Select the template `meteonomiqs - weather tag`.
 
@@ -74,45 +96,24 @@ Name your tag (For example, 'UA-Weather') and fill out the following fields.
 
 * API_KEY: Add the API key you have received during registration.
 
-* Custom Dimensions: Create Custom dimensions with the same Weather parameter names (Detailed Weather Status, Grouped Weather Status, Temperature Maximum, Temperature Minimum, Precipitation, Windchill, Sun hours) on your Google analytics property with 'User' scope. Note that the weather tag itself provides weather data on session level in Google Analytics. Provide the respective Google Analytics custom dimenion's indexes on these fields. You can assign multiple weather parameters to the same custom dimensions. In this case, the values will be separated by a pipe symbol `|`. Weather parameters that are left blank will not be available in the session data later. Make sure that the selected custom dimension indexes are exclusively used by the weather tag.
+* Custom Dimensions: Create Custom dimensions with the same Weather parameter names (Detailed Weather Status, Grouped Weather Status, Temperature Maximum, Temperature Minimum, Precipitation, Windchill, Sun hours) on your Google analytics property with 'User' scope. 
 
 ![Tag Configuration](doc/images/gav2.png "Tag Configuration")
 
-![Tag Configuration](doc/images/tagv2.png "Tag Configuration")
-
-* Consent Status: Choose the data layer variable 'CMP.WeatherTag' which we created earlier. It checks the user consent for wetter.com. The weather information will ONLY be sent if the return value of this variable is true.
-
-* Push status execution to data layer: Leave this checkbox enabled to get the weather tag execution status in the data layer. The variable 'mtqfired' will be updated every time when the weather tag is requesting for weather information. If the tag is fired successfully, the value is 'yes'. If the value is 'no', the tag needs to be fired again. We use the return value (yes/no) to trigger the weather tag in Step 6.
-
 * Cookie Name Meteonomiqs: _sessmetonmq (this is prefilled)
 
-* Cookie Name Google Analytics: _ga (this is prefilled)
-
-Save the tag. Add this tag ('UA-Weather') as a cleanup tag (Tag sequencing) on your website's generic pageview tag as shown below. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired. This is required to associate the weather information with the Google Analytics sessions.
-
-![Tag Configuration](doc/images/sequenc.png "Tag Configuration")
-
-In most cases, Tag sequencing is enough to send the weather information. But sometimes when a visitor has left your page without any interation, empty values may be sent instead of weather information. To avoid that, we add a trigger (Step 6) that will repeatedly fire the weather tag based on the previous execution status.
+Add a trigger to this tag, that it fires as soon as consent for the Weathertag4Analytics is given. If a meteonomiqs cookie is alreay in place (because in the browser of the user weather data was requested within the last 30 minutes), the tag will fire but do not send a request. Save the tag.
 
 
-### Step 6: Configure Trigger
+### Step 6: Send data to Google Analytics
 
-Click on Triggering. Click on + at the top right corner to add a new trigger. Choose the custom event trigger.
+Create a event tag for Google Analytics and add a Event Category , Event Action and (optional) an Event Label. In the section "Custom Dimensions", please map the custom dimension indexes to the dataLayer variables:
 
-![Tag Configuration](doc/images/customeventtrigger.png "Tag Configuration")
+![image](https://user-images.githubusercontent.com/65337449/156028862-a25a5316-56ab-4f98-9d42-8db824ca9dde.png)
 
-Under the trigger firing conditions, check the return value for both the variables 'CMP.GoogleAnalytics' and 'CMP.WeatherTag' we created earlier. The value should be 'true'.
+Add a trigger to fire the tag after the weatherinformation is pushed to the dataLayer and Google Analytics consent is given:
 
-![Tag Configuration](doc/images/triggerv2.png "Tag Configuration")
-
-In addition to that, check the return value of the variable 'dlv - mtqfired'. The value should be 'no'. This means the tag will fire repeatedly until the value is 'yes'. Eventhough the tag is fired multiple times, there is no call to the backend until the value is 'yes'. Save the trigger.
-
-
-
-Note: If you don't have CMP in place, the trigger for checking the consent (Step 6) can be ignored. Simply add this custom tag you have created (without any trigger) as a cleanup tag (Tag sequencing) on your website's generic pageview tag as shown here. The tag sequencing will ensure the custom tag fires immediately after your pageview tag is fired.
-
-![Tag Configuration](doc/images/sequence.png "Tag Configuration")
-
+![image](https://user-images.githubusercontent.com/65337449/156029528-9a1d6ac5-cd0e-4562-afbf-c057fadd7f71.png)
 
 ## Usage
 
@@ -147,18 +148,6 @@ curl -X GET -H 'x-api-key: <YOUR_API_KEY>' "https://wdx-gtm.meteonomiqs.com/prod
 If you get a respose with {"message":"Forbidden"}`, then you key is not valid. Please contact our support at info@meteonomiqs.com 
 
 
-#### How can I check that the correct Google UA ID is used?
-
-You have provided the UA ID during registration. You can check it using you API key:
-
-You can send a GET request as follows:
-
-```
-curl -X GET -H 'x-api-key: <YOUR_API_KEY>' "https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather?c=dummy&s=1"
-```
-
-The response will contain the masked Google UA-ID in the field `"google_uid"`, e.g. "google_uid": "UA-59xxxxxxxx"`
-
 #### How can I see that the tag sends the correct requests to meteonomiqs?
 
 You can use the debug/web view of you browser to look for network traffic to `https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather?`.
@@ -167,29 +156,6 @@ You should find a POST request like this one:
 ```
 https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather?c=GA1.3.371088426.1234567890&s=1
 ```
-
-The parameter c must contain a valid GA session ID. It must be followed by at least one paramter with a value of the custom dimensions you have configured.
-
-### Why is the tag sometimes not fired on first page visits?
-
-In order to combine the weather information with a Google Analytics session, the tag should be fired after the first Google Analytics pageview tag is fired. In order to check the tag execution status, tick the box "Push status of tag execution to dataLayer" in the tag and create a dataLayer variable "mtqfired". This variable is updated everytime the tag is requesting weather information.
-
-![image](https://user-images.githubusercontent.com/65337449/140804954-f0b5ec8c-2ec1-4707-a0d2-2af4e3a7ab03.png)
-
-If the tag was fired successfully, the value is yes. If the value is no, the tag needs to be fired again.
-
-### How can consent management be integrated?
-
-The tag has an integrated consent trigger. The tag will be fired everytime but cookies and requests will be send only, if the field "Consent Status" is set to true (boolean). Please add a Variable here, that reflects the consent status for this tag.
-
-### What kind of values is expected for weather information boxes in the tag?
-
-![image](https://user-images.githubusercontent.com/65337449/140805760-56879844-5489-4771-b96c-d4c443de09cf.png)
-
-Please fill in the custom dimension index 1 -20 or 1-200 (GA360). 
-
-![image](https://user-images.githubusercontent.com/65337449/140806175-fa33f0ea-70e7-4ea9-93bb-abb6b99bc3ea.png)
-
 
 ### Why are there sessions without weather information?
 
