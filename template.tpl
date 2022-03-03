@@ -1,4 +1,4 @@
-___TERMS_OF_SERVICE___
+﻿___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -14,9 +14,6 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "meteonomiqs - weather tag",
-  "categories": [
-    "ANALYTICS"
-  ],
   "brand": {
     "id": "brand_dummy",
     "displayName": "meteonomiqs",
@@ -33,95 +30,24 @@ ___TEMPLATE_PARAMETERS___
 
 [
   {
+    "type": "LABEL",
+    "name": "Version",
+    "displayName": "Version 3.0"
+  },
+  {
     "type": "TEXT",
     "name": "apikey",
     "displayName": "API KEY",
-    "simpleValueType": true
-  },
-  {
-    "type": "GROUP",
-    "name": "group1",
-    "displayName": "Custom Dimensions",
-    "subParams": [
-      {
-        "type": "LABEL",
-        "name": "label2",
-        "displayName": "Please define the custom dimension index for the weather information. If the same custom dimension index will be used to an index, the data will appear sparated by \"|\". Set the custom dimension scope in the Universal Analytics property to \"User\"."
-      },
-      {
-        "type": "TEXT",
-        "name": "status",
-        "displayName": "Detailed Weather Status",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "statusgrouped",
-        "displayName": "Grouped Weather Status",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "temperature",
-        "displayName": "Temperature Maximum",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "temperaturemin",
-        "displayName": "Temperature Minimum",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "precipitation",
-        "displayName": "Precipitation",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "windchill",
-        "displayName": "Windchill",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "sunhours",
-        "displayName": "Sunhours",
-        "simpleValueType": true
-      }
-    ]
-  },
-  {
-    "type": "SELECT",
-    "name": "consent",
-    "displayName": "Consent Status",
-    "macrosInSelect": true,
-    "selectItems": [],
     "simpleValueType": true,
-    "help": "Add Variable for consent status. Needs to be true to see data in Google Analytics."
-  },
-  {
-    "type": "CHECKBOX",
-    "name": "pushtodl",
-    "checkboxText": "Push execution status of text to dataLayer",
-    "simpleValueType": true
+    "help": "Please enter your API Key provided by meteonomiqs.com. More Information: https://www.meteonomiqs.com/weather-analytics/"
   },
   {
     "type": "TEXT",
     "name": "CookieName",
     "displayName": "Cookie Name Meteonomiqs",
     "simpleValueType": true,
-    "help": "This Cookie will be used, to refresh weather data every 30 minutes",
+    "help": "This Cookie will be used to refresh weather data every 30 minutes only.",
     "defaultValue": "_sessmetonmq"
-  },
-  {
-    "type": "TEXT",
-    "name": "CookieNameGA",
-    "displayName": "Cookie Name Gogole Analytics",
-    "simpleValueType": true,
-    "help": "Cookie Name used by GA (default _ga)",
-    "defaultValue": "_ga"
   }
 ]
 
@@ -135,61 +61,28 @@ const setCookie = require('setCookie');
 const injectScript = require('injectScript');
 const callInWindow = require('callInWindow');
 const createQueue = require('createQueue');
-
-
+const generateRandom = require('generateRandom');
 const logToConsole = require('logToConsole');
 const endpoint="https://wdx-gtm.meteonomiqs.com/prod/gtm/ip2weather";
 const dataLayerPush = createQueue('dataLayer');
 
-let script="https://resources.meteonomiqs.com/wdx/gtm-weather/javascript/meteonomiqs_gtm.js";
+const version="3.0";
 
-if (data.consent!=true)
-{
-  const obj = {mtqfired:'consent_not_given'};
-  if (data.pushtodl) {dataLayerPush(obj);}
-  data.gtmOnSuccess();
-}
-else
-{
 let cookie = getCookieValues(data.CookieName);
-let cookiega = getCookieValues(data.CookieNameGA);
-  
   
 if (cookie!="true")
-{ 
-  
-  if (cookiega[0]===undefined)
-  {   
-    const obj = {mtqfired:'no'};
-    if (data.pushtodl) {dataLayerPush(obj);}
-    data.gtmOnSuccess();
-  }
-  else
-  {
+{
+
+let script="https://resources.meteonomiqs.com/wdx/gtm-weather/javascript/meteonomiqs_gtm_get.js";
+
+  var z=generateRandom(0, 99999999999999999999);
   const options = {'domain': 'auto','path': '/','max-age': 60*30,'secure': true};
   setCookie(data.CookieName,"true", options);
   
-  if (data.temperature == undefined){data.temperature="0";}
-  if (data.temperaturemin == undefined){data.temperaturemin="0";}
-
-  if (data.status == undefined){data.status="0";}
-  if (data.statusgrouped == undefined){data.statusgrouped="0";}
-
-  if (data.precipitation == undefined){data.precipitation="0";}
-  if (data.windchill == undefined){data.windchill="0";}
-  if (data.sunhours == undefined){data.sunhours="0";}
-
-  if (cookiega == undefined){cookiega="0";}
-  
-  let url = encodeUri(endpoint)+"?sd="+encodeUri(data.status)+"&sg="+encodeUri(data.statusgrouped)+"&tmax="+encodeUri(data.temperature)+"&tmin="+encodeUri(data.temperaturemin)+"&psum="+encodeUri(data.precipitation)+"&wmax="+encodeUri(data.windchill)+"&sunh="+encodeUri(data.sunhours)+"&c="+encodeUri(cookiega.toString());
-
+  let url = encodeUri(endpoint)+"?sd=1&sg=1&tmax=1&tmin=1&psum=&wmax=1&sunh=1&c=1&z="+z+"&v="+version;
   injectScript(script, function(){callInWindow('sendData', url, data.apikey);}, data.gtmOnFailure);
-  
-  const obj = {mtqfired:'yes'};
-  if (data.pushtodl) {dataLayerPush(obj);}
-  }
 }
-}
+
 data.gtmOnSuccess();
 
 
@@ -421,7 +314,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://resources.meteonomiqs.com/wdx/gtm-weather/javascript/meteonomiqs_gtm.js"
+                "string": "https://resources.meteonomiqs.com/wdx/gtm-weather/javascript/meteonomiqs_gtm_get.js"
               }
             ]
           }
