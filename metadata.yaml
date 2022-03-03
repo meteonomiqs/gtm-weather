@@ -1,6 +1,8 @@
 homepage: "https://www.meteonomiqs.com"
 documentation: "https://www.meteonomiqs.com/de/wetter-analytics/"
 versions:
+  - sha: 9bb9f2e2d87bb063bc19c5ac487133a711820cf2
+    changeNotes: tags requests weatherinformation and push the information into dataLayer
   - sha: ce1f43423737f55911811e9c3c629aef7e394765
     changeNotes: additional weather information and consent field added.
   - sha: 66bb8087a3691619ec2e25b49cc80bb52edbe3e4
