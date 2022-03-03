@@ -61,7 +61,7 @@ If you are using a CMP prior to TCF2.0 or some other consent solution, please in
 
 ### Step 4: Create Variables
 
-Beginning in Version 3 of the WeatherTag4Analytics, we are not sending the events directly to Google Analytics. After firing the tag, WeatherTag4Analytics will push the weatherinformation to the dataLayer: (**CMS: Are the details for the customers important? - I would remove the next two pictures and just leave the text**) 
+Beginning in Version 3 of the WeatherTag4Analytics, we are not sending the events directly to Google Analytics. After firing the tag, WeatherTag4Analytics will push the weatherinformation to the dataLayer:  
 
 ![image](https://user-images.githubusercontent.com/65337449/156024509-b7a0f95d-d59e-4488-a0a3-e6f65f0140d9.png)
 
@@ -69,9 +69,9 @@ After pushing the information, a event will be added to the dataLayer named weat
 
 ![image](https://user-images.githubusercontent.com/65337449/156024655-aeb63b69-5106-463f-9a38-0af669d7cf39.png)
 
-Go to 'Variables' on your Tag manager account and create data layer variables for both Google Analytics and wetter.com from your CMP. Name them as 'CMP.GoogleAnalytics' and 'CMP.WeatherTag', respectively. (**CMS: Is this important? - We do not have them on Snowthority, not mentioned in the text below, what is their role?**)
+Go to 'Variables' on your Tag manager account and create data layer variables for both Google Analytics and wetter.com from your CMP. Name them as 'CMP.GoogleAnalytics' and 'CMP.WeatherTag', respectively. 
 
-Create data layer variables that will contain the weather information later as shown below (**CMS Shouldn't we directly name them DLV.X**):
+Create data layer variables that will contain the weather information later as shown below :
 
 | dataLayer variable name  | 
 | ------------- | 
@@ -83,9 +83,9 @@ Create data layer variables that will contain the weather information later as s
 | temperature_min  |
 | windchill_max  |
 | windchill_min  |
-| **CMS: windspeed_max**  |
+| windspeed_max  |
 
-We recommend to set the name of the variable to the dataLayer variable name with the prefix DLV., e.g. DLV.temperature_min
+We recommend to set the name of the variable in GTM to the dataLayer variable name with the prefix DLV., e.g. DLV.temperature_min
 
 ### Step 5: Configure WeatherTag4Analytics
 
@@ -93,32 +93,35 @@ Create a new custom tag. Select the template `meteonomiqs - weather tag`.
 
 ![Tag Configuration](doc/images/customtag.png "Tag Configuration")
 
-Name your tag 'UA-Weather' (**CMS: 'Weathertag - Request Weatherdata'**) and fill out the following fields.
+Name your tag 'Weathertag - Request Weatherdata' and fill out the following fields.
 
 * API_KEY: Add the API key you have received during registration.
 
-* Custom Dimensions: Create Custom dimensions with the same Weather parameter names (Detailed Weather Status, Grouped Weather Status, Temperature Maximum, Temperature Minimum, Precipitation, Windchill, Sun hours, **CMS: Windspeed Maximum**) on your Google analytics property with 'User' scope (**CMS Names do not match with picture**). 
+* Custom Dimensions in Google Analytics: Create Custom dimensions with the same Weather parameter names (Detailed Weather Status, Grouped Weather Status, Temperature Maximum, Temperature Minimum, Precipitation, Windchill, Sun hours, Windspeed Maximum on your Google analytics property with 'User' scope. 
 
 ![Tag Configuration](doc/images/gav2.png "Tag Configuration")
 
 * Cookie Name Meteonomiqs: _sessmetonmq (this is prefilled)
 
-Add a trigger (**CMS: with the name 'Weathertag Trigger - Consent'**) to this tag, that it fires as soon as consent for the Weathertag4Analytics is given. If a meteonomiqs cookie is alreay in place (because in the browser of the user weather data was requested within the last 30 minutes), the tag will fire but do not send a request. Save the tag.
+Add a trigger with the name 'Weathertag Trigger - Consent' to this tag, that it fires as soon as consent for the Weathertag4Analytics is given. CMP.WeatherTag should be used as a condition in the trigger. Save the tag.
 
+*Note:  If a meteonomiqs cookie is already in place (because in the browser of the user the weather data was requested within the last 30 minutes), the tag will fire but do not send a request.*
 
 ### Step 6: Send data to Google Analytics
 
-Create a event tag (**CMS: 'Weathertag - Fill Datalayer'**) for Google Analytics and add a Event Category, Event Action and (optional) an Event Label. In the section "Custom Dimensions" (**CMS: I cannot find the option**), please map the custom dimension indexes to the dataLayer variables: (**CMS: The IDs are not consistent with Step 5, is this an issue? - e.g. 2 is Temperature Maximum and not Grouped Weather Status**)
+Create a event tag 'Weathertag - Fill Datalayer' for Google Analytics and add a Event Category, Event Action and (optional) an Event Label. In the section "Custom Dimensions", please map the custom dimension indexes to the dataLayer variables: 
+
+*If you don't see the option for adding Custom Dimensions in the Google Analytics Event Tag, please click on "Enable overriding settings in this tag", go to "More Settings" and the section "Custom Dimensions" will appear.*
 
 ![image](https://user-images.githubusercontent.com/65337449/156028862-a25a5316-56ab-4f98-9d42-8db824ca9dde.png)
 
-Add a trigger (**CMS: 'Weathertag Trigger - Fill Datalayer'**) to fire the tag after the weatherinformation is pushed to the dataLayer and Google Analytics consent is given (**CMS: What about WeatherTag consent? On Snowthority, regex is activated**):
+Add a trigger 'Weathertag Trigger - Fill Datalayer' to fire the tag after the weatherinformation is pushed to the dataLayer and Google Analytics consent is given.
 
 ![image](https://user-images.githubusercontent.com/65337449/156029528-9a1d6ac5-cd0e-4562-afbf-c057fadd7f71.png)
 
 ## Usage
 
-Once the tag (**CMS: tags 'Weathertag - Request Weatherdata' and 'Weathertag - Fill Datalayer'** are)) is configured and published, the custom dimenions of a user session data will contain the configured weather parameters!
+Once the tag 'Weathertag - Request Weatherdata' and 'Weathertag - Fill Datalayer' is configured and published, the custom dimenions of a user session data will contain the configured weather parameters!
 
 You can now analyze how user behaviour is impacted by different weather conditions.
 
