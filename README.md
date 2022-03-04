@@ -111,13 +111,13 @@ Add a trigger with the name 'Weathertag Trigger - Consent' to this tag, that it 
 
 Create a event tag 'Weathertag - Fill Datalayer' for Google Analytics and add a Event Category, Event Action and (optional) an Event Label (optional). Ensure that 'Non-Interaction Hit' is True to avoid creating users without sessions.  
 
-![image](doc/images/createdilldatalayer1.png "Fill Datalayer 1")
+![image](doc/images/createfilldatalayer1.png "Fill Datalayer 1")
 
 In the section "Custom Dimensions", please map the custom dimension indexes to the dataLayer variables: 
 
 *If you don't see the option for adding Custom Dimensions in the Google Analytics Event Tag, please click on "Enable overriding settings in this tag", go to "More Settings" and the section "Custom Dimensions" will appear.*
 
-![image](doc/images/createdilldatalayer2.png "Fill Datalayer 2")
+![image](doc/images/createfilldatalayer2.png "Fill Datalayer 2")
 
 Add a trigger 'Weathertag Trigger - Fill Datalayer' to fire the tag after the weatherinformation is pushed to the dataLayer and Google Analytics consent is given.
 
