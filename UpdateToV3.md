@@ -24,4 +24,4 @@ Now you can check the actual version of the tag directly in tag.
 
 ### Step 4: Finish update
 
-Due to major technical changes, the steps 4, 5 and 6 of the setup in [REAMDE.md] has to be done. Note that Version 3 of the Tag is no clean-up tag anymore. In particular, the new custom dimensions for the additional weather parameter has to added, the datalayer variables has to be created and these variables have to be linked.
+Due to major technical changes, steps 5 and 6 of the setup in [REAMDE.md] has to be done. In particular, the new custom dimensions for the additional weather parameter has to added, the datalayer variables has to be created and these variables have to be linked. Note that from Version 3 on the Weather Tag is no clean-up tag anymore.
