@@ -105,7 +105,9 @@ Name your tag 'Weathertag - Request Weatherdata' and fill out the following fiel
 
 Add a trigger with the name 'Weathertag Trigger - Consent' to this tag, that it fires as soon as consent for the Weathertag4Analytics is given. CMP.WeatherTag should be used as a condition in the trigger. Save the tag.
 
-*Note:  If a meteonomiqs cookie is already in place (because in the browser of the user the weather data was requested within the last 30 minutes), the tag will fire but do not send a request.*
+*Note: In contrast to previous version, this tag should not be a cleanup tag.*
+
+*Remark:  If a meteonomiqs cookie is already in place (because in the browser of the user the weather data was requested within the last 30 minutes), the tag will fire but do not send a request.*
 
 ### Step 6: Send data to Google Analytics
 
@@ -133,7 +135,7 @@ You can now analyze how user behaviour is impacted by different weather conditio
 
 ![Tag Configuration](doc/images/samplereport2.png "Tag Configuration")
 
-Note: The Weather Tag by Meteonomiqs determines location based on IP address. The location data is then used to check weather conditions. IP address is not saved or processed any further. You should ensure that your website privacy policy complies with the weather tag requirement.
+*Remark: The Weather Tag by Meteonomiqs determines location based on IP address. The location data is then used to check weather conditions. IP address is not saved or processed any further. You should ensure that your website privacy policy complies with the weather tag requirement.*
 
 Go ahead an build you own weather based analysis!
 
