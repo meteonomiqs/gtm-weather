@@ -105,7 +105,7 @@ Name your tag 'Weathertag - Request Weatherdata' and fill out the following fiel
 
 Add a trigger with the name 'Weathertag Trigger - Consent' to this tag, that it fires as soon as consent for the Weathertag4Analytics is given. CMP.WeatherTag should be used as a condition in the trigger. Save the tag.
 
-*Note: In contrast to previous version, this tag should not be a cleanup tag.*
+*Note: In contrast to previous version, this tag is not a cleanup tag.*
 
 *Remark:  If a meteonomiqs cookie is already in place (because in the browser of the user the weather data was requested within the last 30 minutes), the tag will fire but do not send a request.*
 
