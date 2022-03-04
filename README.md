@@ -59,19 +59,41 @@ An easy way is to add wetter.com Gmbh (meteonomiqs is a brand of wetter.com GmbH
 
 If you are using a CMP prior to TCF2.0 or some other consent solution, please include the above information in your privacy statement as needed.
 
-### Step 4: Create Variables
+### Step 4: Configure WeatherTag4Analytics in Google Tagmanager
 
-Beginning in Version 3 of the WeatherTag4Analytics, we are not sending the events directly to Google Analytics. After firing the tag, WeatherTag4Analytics will push the weatherinformation to the dataLayer:  
+Create a new custom tag. Select the template `meteonomiqs - weather tag`.
+
+![Tag Configuration](doc/images/customtag.png "Tag Configuration")
+
+Name your tag 'Weathertag - Request Weatherdata' and fill out the following fields:
+
+* API_KEY: Add the API key you have received during registration.
+
+* Cookie Name Meteonomiqs: _sessmetonmq (this is prefilled)
+
+Add a trigger with the name 'Weathertag Trigger - Consent' to this tag, that it fires as soon as consent for the Weathertag4Analytics is given. CMP.WeatherTag should be used as a condition in the trigger. Save the tag.
+
+*Note: In contrast to previous version, this tag is not a cleanup tag.*
+
+*Remark:  If a meteonomiqs cookie is already in place (because in the browser of the user the weather data was requested within the last 30 minutes), the tag will fire but do not send a request.*
+
+### Step 5: Create Variables
+
+First create custom dimensions on your Google analytics property with 'User' scope with the weather parameter names: Detailed Weather Status, Grouped Weather Status, Temperature Maximum, Temperature Minimum, Precipitation, Windchill, Sun hours, Windspeed Maximum. 
+
+![Tag Configuration](doc/images/customdimensions.png "Tag Configuration")
+
+*Remark: Beginning in Version 3 of the WeatherTag4Analytics, we are not sending the events directly to Google Analytics. After firing the tag, WeatherTag4Analytics will push the weatherinformation to the dataLayer:*
 
 ![image](doc/images/datalayer.png "Data Layer")
 
-After pushing the information, a event will be added to the dataLayer named weatherinformation:
+*After pushing the information, a event will be added to the dataLayer named weatherinformation:*
 
 ![image](https://user-images.githubusercontent.com/65337449/156024655-aeb63b69-5106-463f-9a38-0af669d7cf39.png)
 
-Go to 'Variables' on your Tag manager account and create data layer variables for both Google Analytics and wetter.com from your CMP. Name them as 'CMP.GoogleAnalytics' and 'CMP.WeatherTag', respectively. 
+Second, in your Google Tagmanager account go to 'Variables' and create data layer variables for both Google Analytics and wetter.com from your CMP. Name them as 'CMP.GoogleAnalytics' and 'CMP.WeatherTag', respectively. 
 
-Create data layer variables that will contain the weather information later as shown below :
+Third, create data layer variables that will contain the weather information as shown below:
 
 | dataLayer variable name  | 
 | ------------- | 
@@ -85,29 +107,7 @@ Create data layer variables that will contain the weather information later as s
 | windchill_min  |
 | windspeed_max  |
 
-We recommend to set the name of the variable in GTM to the dataLayer variable name with the prefix DLV., e.g. DLV.temperature_min
-
-### Step 5: Configure WeatherTag4Analytics
-
-Create a new custom tag. Select the template `meteonomiqs - weather tag`.
-
-![Tag Configuration](doc/images/customtag.png "Tag Configuration")
-
-Name your tag 'Weathertag - Request Weatherdata' and fill out the following fields:
-
-* API_KEY: Add the API key you have received during registration.
-
-* Custom Dimensions in Google Analytics: Create Custom dimensions with the same Weather parameter names (Detailed Weather Status, Grouped Weather Status, Temperature Maximum, Temperature Minimum, Precipitation, Windchill, Sun hours, Windspeed Maximum on your Google analytics property with 'User' scope. 
-
-![Tag Configuration](doc/images/customdimensions.png "Tag Configuration")
-
-* Cookie Name Meteonomiqs: _sessmetonmq (this is prefilled)
-
-Add a trigger with the name 'Weathertag Trigger - Consent' to this tag, that it fires as soon as consent for the Weathertag4Analytics is given. CMP.WeatherTag should be used as a condition in the trigger. Save the tag.
-
-*Note: In contrast to previous version, this tag is not a cleanup tag.*
-
-*Remark:  If a meteonomiqs cookie is already in place (because in the browser of the user the weather data was requested within the last 30 minutes), the tag will fire but do not send a request.*
+Fourth, set the names of the variable in Google Tag Manager equal to the dataLayer variable names, but with the prefix DLV., e.g. DLV.temperature_min
 
 ### Step 6: Send data to Google Analytics
 
