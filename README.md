@@ -61,6 +61,7 @@ If you are using a CMP prior to TCF2.0 or some other consent solution, please in
 
 ### Step 4: Configure WeatherTag4Analytics in Google Tagmanager
 
+Go to 'Variables' and create data layer variables for both Google Analytics and wetter.com from your CMP. Name them as 'CMP.GoogleAnalytics' and 'CMP.WeatherTag', respectively.
 Create a new custom tag. Select the template `meteonomiqs - weather tag`.
 
 ![Tag Configuration](doc/images/customtag.png "Tag Configuration")
@@ -87,13 +88,11 @@ First create custom dimensions on your Google analytics property with 'User' sco
 
 ![image](doc/images/datalayer.png "Data Layer")
 
-*After pushing the information, a event will be added to the dataLayer named weatherinformation:*
+*After pushing the information, an event will be added to the dataLayer named weatherinformation:*
 
-![image](https://user-images.githubusercontent.com/65337449/156024655-aeb63b69-5106-463f-9a38-0af669d7cf39.png)
+![image](https://user-images.githubusercontent.com/65337449/156024655-aeb63b69-5106-463f-9a38-0af669d7cf39.png) 
 
-Second, in your Google Tagmanager account go to 'Variables' and create data layer variables for both Google Analytics and wetter.com from your CMP. Name them as 'CMP.GoogleAnalytics' and 'CMP.WeatherTag', respectively. 
-
-Third, create data layer variables that will contain the weather information as shown below:
+Second, in your Google Tagmanager account create data layer variables that will contain the weather information as shown below:
 
 | dataLayer variable name  | 
 | ------------- | 
@@ -107,7 +106,7 @@ Third, create data layer variables that will contain the weather information as 
 | windchill_min  |
 | windspeed_max  |
 
-Fourth, set the names of the variable in Google Tag Manager equal to the dataLayer variable names, but with the prefix DLV., e.g. DLV.temperature_min
+Third, set the names of the variable in Google Tag Manager equal to the dataLayer variable names, but with the prefix DLV., e.g. DLV.temperature_min
 
 ### Step 6: Send data to Google Analytics
 
