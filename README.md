@@ -110,7 +110,7 @@ Third, set the names of the variable in Google Tag Manager equal to the dataLaye
 
 ### Step 6: Send data to Google Analytics
 
-Create a event tag 'Weathertag - Fill Datalayer' for Google Analytics and add a Event Category, Event Action and (optional) an Event Label (optional). Ensure that 'Non-Interaction Hit' is True to avoid creating users without sessions.  
+Create a event tag 'Weathertag - Fill Datalayer' for Google Analytics and add Event Category, Event Action (optional) and Event Label (optional). Ensure that 'Non-Interaction Hit' is True to avoid creating users without sessions.  
 
 ![image](doc/images/createfilldatalayer1.png "Fill Datalayer 1")
 
