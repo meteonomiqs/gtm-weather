@@ -124,7 +124,7 @@ Add a trigger 'Weathertag Trigger - Fill Datalayer' to fire the tag after the we
 
 ![image](https://user-images.githubusercontent.com/65337449/156029528-9a1d6ac5-cd0e-4562-afbf-c057fadd7f71.png)
 
-In case you do not have a CMP integration, just select 'PageView' instead of 'Custom Event' as Trigger Type in 'Weathertag Trigger - Fill Datalayer'.
+In case you do not have a CMP, just select 'PageView' instead of 'Custom Event' as Trigger Type in 'Weathertag Trigger - Fill Datalayer'.
 
 ## Usage
 
