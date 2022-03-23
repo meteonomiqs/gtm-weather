@@ -106,6 +106,9 @@ Second, in your Google Tagmanager account create data layer variables that will 
 | DLV.windchill_min | windchill_min  |
 | DLV.windspeed_max | windspeed_max  |
 
+One example for precipitation is shown below:
+![image](doc/images/datavariables.png "Naming Data Variables")
+
 ### Step 6: Send data to Google Analytics
 
 Create a event tag 'Weathertag - Fill Datalayer' for Google Analytics and add Event Category, Event Action (optional) and Event Label (optional). Ensure that 'Non-Interaction Hit' is True to avoid creating users without sessions.  
