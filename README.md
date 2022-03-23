@@ -92,21 +92,19 @@ First create custom dimensions on your Google analytics property with 'User' sco
 
 ![image](https://user-images.githubusercontent.com/65337449/156024655-aeb63b69-5106-463f-9a38-0af669d7cf39.png) 
 
-Second, in your Google Tagmanager account create data layer variables that will contain the weather information as shown below:
+Second, in your Google Tagmanager account create data layer variables that will contain the weather information with the names exactly as shown below:
 
-| dataLayer variable name  | 
-| ------------- | 
-| precipitation  | 
-| state_detail  | 
-| state_general  | 
-| sun_hours  | 
-| temperature_max  | 
-| temperature_min  |
-| windchill_max  |
-| windchill_min  |
-| windspeed_max  |
-
-Third, set the names of the variable in Google Tag Manager equal to the dataLayer variable names, but with the prefix DLV., e.g. DLV.temperature_min
+| variable name | dataLayer variable name  | 
+|------------- | ------------- | 
+| DLV.precipitation  | precipitation  | 
+| DLV.state_detail  | state_detail  | 
+| DLV.state_general  | state_general  | 
+| DLV.sun_hours  | sun_hours  | 
+| DLV.temperature_max | temperature_max  | 
+| DLV.temperature_min | temperature_min  |
+| DLV.windchill_max | windchill_max  |
+| DLV.windchill_min | windchill_min  |
+| DLV.windspeed_max | windspeed_max  |
 
 ### Step 6: Send data to Google Analytics
 
